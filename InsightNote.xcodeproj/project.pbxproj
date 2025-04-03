@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		89D416E22D9F26A6003D163C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D416E12D9F26A6003D163C /* HomeView.swift */; };
+		89D4170B2D9F312D003D163C /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D4170A2D9F3122003D163C /* NoteDetailView.swift */; };
+		89D417142D9F3707003D163C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D417112D9F31B1003D163C /* HomeViewModel.swift */; };
+		89D417152D9F373E003D163C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D4170F2D9F3198003D163C /* Note.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		89D416ED2D9F26A8003D163C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -25,8 +32,13 @@
 
 /* Begin PBXFileReference section */
 		89D416DC2D9F26A6003D163C /* InsightNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		89D416E12D9F26A6003D163C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		89D416EC2D9F26A8003D163C /* InsightNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InsightNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89D416F62D9F26A8003D163C /* InsightNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InsightNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		89D4170A2D9F3122003D163C /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
+		89D4170F2D9F3198003D163C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		89D417112D9F31B1003D163C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		89D417132D9F31F5003D163C /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +87,10 @@
 		89D416D32D9F26A6003D163C = {
 			isa = PBXGroup;
 			children = (
+				89D417122D9F31EB003D163C /* Services */,
+				89D417102D9F31A7003D163C /* ViewModels */,
+				89D4170D2D9F318B003D163C /* Models */,
+				89D417092D9F273D003D163C /* Views */,
 				89D416DE2D9F26A6003D163C /* InsightNote */,
 				89D416EF2D9F26A8003D163C /* InsightNoteTests */,
 				89D416F92D9F26A8003D163C /* InsightNoteUITests */,
@@ -90,6 +106,39 @@
 				89D416F62D9F26A8003D163C /* InsightNoteUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		89D417092D9F273D003D163C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				89D4170A2D9F3122003D163C /* NoteDetailView.swift */,
+				89D416E12D9F26A6003D163C /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		89D4170D2D9F318B003D163C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				89D4170F2D9F3198003D163C /* Note.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		89D417102D9F31A7003D163C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				89D417112D9F31B1003D163C /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		89D417122D9F31EB003D163C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				89D417132D9F31F5003D163C /* OpenAIService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +285,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89D417152D9F373E003D163C /* Note.swift in Sources */,
+				89D4170B2D9F312D003D163C /* NoteDetailView.swift in Sources */,
+				89D416E22D9F26A6003D163C /* HomeView.swift in Sources */,
+				89D417142D9F3707003D163C /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
