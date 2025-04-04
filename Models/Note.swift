@@ -29,7 +29,7 @@ class Note: ObservableObject, Identifiable, Equatable {
                         Use "Sort" to organize them.
                         And summarize with AI to rewrite the content!
                         
-                        Have fun ✨
+                        Have fun! ✨
                         """,
                         dateCreated: Date(),
                         color: nil
