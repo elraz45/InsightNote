@@ -16,8 +16,12 @@ struct NoteCardView: View {
                 .lineLimit(2)
         }
         .padding()
-        .background(note.color ?? Color(.systemGray6))
-        .cornerRadius(10)
-        .shadow(radius: 2)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(note.color ?? Color(.systemGray6))
+                .shadow(radius: 3)
+        )
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal)       // 📏 Padding outside to control spacing
     }
 }
