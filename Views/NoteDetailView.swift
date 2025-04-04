@@ -72,6 +72,29 @@ struct NoteDetailView: View {
                 }) {
                     Text("Color")
                 }
+                .overlay(
+                    Group {
+                        if showColorPicker {
+                            HStack(spacing: 10) {
+                                ForEach(0..<colorOptions.count, id: \.self) { index in
+                                    let option = colorOptions[index]
+                                    Circle()
+                                        .fill(option.display)
+                                        .frame(width: 24, height: 24)
+                                        .onTapGesture {
+                                            onColorChange(note, option.value)
+                                            showColorPicker = false
+                                        }
+                                }
+                            }
+                            .padding(8)
+                            .background(Color(.systemBackground))
+                            .cornerRadius(8)
+                            .shadow(radius: 3)
+                            .offset(x: 0, y: -40)
+                        }
+                    }, alignment: .topTrailing
+                )
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 16)
@@ -85,22 +108,6 @@ struct NoteDetailView: View {
                     HStack {
                         Image(systemName: "arrow.uturn.backward")
                         Text("Revert")
-                    }
-                }
-                .padding(.top, 8)
-            }
-            
-            if showColorPicker {
-                HStack {
-                    ForEach(0..<colorOptions.count, id: \.self) { index in
-                        let option = colorOptions[index]
-                        Circle()
-                            .fill(option.display)
-                            .frame(width: 24, height: 24)
-                            .onTapGesture {
-                                onColorChange(note, option.value)
-                                showColorPicker = false
-                            }
                     }
                 }
                 .padding(.top, 8)
