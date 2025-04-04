@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8915EB722D9FD10B00517F0B /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8915EB712D9FD10200517F0B /* NoteEditorView.swift */; };
+		8915EB742D9FD8B600517F0B /* NoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8915EB732D9FD8AF00517F0B /* NoteCardView.swift */; };
+		8915EB7F2D9FF18800517F0B /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8915EB7E2D9FF18300517F0B /* NoteDetailView.swift */; };
+		8915EB802D9FFDB000517F0B /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D417132D9F31F5003D163C /* OpenAIService.swift */; };
 		89D416E22D9F26A6003D163C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D416E12D9F26A6003D163C /* HomeView.swift */; };
-		89D4170B2D9F312D003D163C /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D4170A2D9F3122003D163C /* NoteDetailView.swift */; };
 		89D417142D9F3707003D163C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D417112D9F31B1003D163C /* HomeViewModel.swift */; };
 		89D417152D9F373E003D163C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D4170F2D9F3198003D163C /* Note.swift */; };
 /* End PBXBuildFile section */
@@ -31,11 +34,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8915EB712D9FD10200517F0B /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
+		8915EB732D9FD8AF00517F0B /* NoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCardView.swift; sourceTree = "<group>"; };
+		8915EB7E2D9FF18300517F0B /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
 		89D416DC2D9F26A6003D163C /* InsightNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsightNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89D416E12D9F26A6003D163C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		89D416EC2D9F26A8003D163C /* InsightNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InsightNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89D416F62D9F26A8003D163C /* InsightNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InsightNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		89D4170A2D9F3122003D163C /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
 		89D4170F2D9F3198003D163C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		89D417112D9F31B1003D163C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		89D417132D9F31F5003D163C /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
@@ -111,7 +116,9 @@
 		89D417092D9F273D003D163C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				89D4170A2D9F3122003D163C /* NoteDetailView.swift */,
+				8915EB7E2D9FF18300517F0B /* NoteDetailView.swift */,
+				8915EB732D9FD8AF00517F0B /* NoteCardView.swift */,
+				8915EB712D9FD10200517F0B /* NoteEditorView.swift */,
 				89D416E12D9F26A6003D163C /* HomeView.swift */,
 			);
 			path = Views;
@@ -286,9 +293,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				89D417152D9F373E003D163C /* Note.swift in Sources */,
-				89D4170B2D9F312D003D163C /* NoteDetailView.swift in Sources */,
 				89D416E22D9F26A6003D163C /* HomeView.swift in Sources */,
+				8915EB802D9FFDB000517F0B /* OpenAIService.swift in Sources */,
+				8915EB7F2D9FF18800517F0B /* NoteDetailView.swift in Sources */,
 				89D417142D9F3707003D163C /* HomeViewModel.swift in Sources */,
+				8915EB742D9FD8B600517F0B /* NoteCardView.swift in Sources */,
+				8915EB722D9FD10B00517F0B /* NoteEditorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

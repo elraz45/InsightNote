@@ -6,18 +6,36 @@
 //
 
 import Foundation
+import SwiftUICore
 
-struct Note: Identifiable {
+import SwiftUI
+
+struct Note: Identifiable, Equatable {
     let id: UUID
     var title: String
     var content: String
-    var summary: String? = nil
     var dateCreated: Date
+    var summary: String?
+    var color: Color?
 
     static func sampleData() -> [Note] {
         return [
-            Note(id: UUID(), title: "SwiftUI", content: "SwiftUI is Apple’s framework...", dateCreated: Date()),
-            Note(id: UUID(), title: "OpenAI", content: "OpenAI provides APIs for AI-based services...", dateCreated: Date())
+            Note(
+                id: UUID(),
+                title: "👋 Welcome to InsightNote!",
+                content: """
+                This is your very first note 📝
+
+                You can write anything here — ideas, thoughts, tasks, or even long essays.
+                
+                Tap "New" to create a note.
+                Use "Sort" to organize them.
+                And summarize with AI too!
+
+                Have fun ✨
+                """,
+                dateCreated: Date()
+            )
         ]
     }
 }
