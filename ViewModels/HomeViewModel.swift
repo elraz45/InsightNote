@@ -36,7 +36,7 @@ class HomeViewModel: ObservableObject {
                 case .success(let rewrittenText):
                     note.content = rewrittenText
                 case .failure(let error):
-                    print("Error summarizing note: \(error)")
+                    print("Error summarizing note: \(error.localizedDescription)")
                 }
             }
         }
