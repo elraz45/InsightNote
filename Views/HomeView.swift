@@ -3,7 +3,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @State private var showingAddNoteView = false
-    @State private var selectedNote: Note?
+    @State private var selectedNote: Note? = nil
     @State private var noteForEditing: Note? = nil
 
     var body: some View {
@@ -31,7 +31,7 @@ struct HomeView: View {
                             showingAddNoteView = true
                         }
                     }
-                    .onDelete(perform: deleteNotes)
+                    .onDelete(perform: viewModel.deleteNotes)
                     .onMove { indices, newOffset in
                         viewModel.notes.move(fromOffsets: indices, toOffset: newOffset)
                     }
@@ -49,7 +49,7 @@ struct HomeView: View {
                         }
                         Button("Sort") {
                             withAnimation {
-                                viewModel.sortNotesByTitle()
+                                viewModel.sortNotesByDate()
                             }
                         }
                     }
@@ -67,7 +67,6 @@ struct HomeView: View {
                 NoteDetailView(
                     note: note,
                     onEdit: { note in
-                        // Close detail view and open editor
                         selectedNote = nil
                         noteForEditing = note
                     },
@@ -76,6 +75,9 @@ struct HomeView: View {
                     },
                     onColorChange: { note, color in
                         viewModel.changeColor(for: note, to: color)
+                    },
+                    onUpdate: { note, newContent in
+                        viewModel.updateNote(note, newTitle: note.title, newContent: newContent)
                     }
                 )
                 .presentationDetents([.medium, .large])
@@ -89,10 +91,5 @@ struct HomeView: View {
                 }
             }
         }
-    }
-    
-    private func deleteNotes(at offsets: IndexSet) {
-        // Remove the note from viewModel.notes
-        viewModel.notes.remove(atOffsets: offsets)
     }
 }

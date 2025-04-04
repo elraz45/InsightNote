@@ -1,41 +1,35 @@
 import SwiftUI
 
 struct NoteEditorView: View {
-    @Environment(\.dismiss) var dismiss
-    @State var title: String = ""
-    @State var content: String = ""
-
     var note: Note?
-    var onSave: ((String, String) -> Void)?
+    var onSave: (String, String) -> Void
+
+    @State private var title: String = ""
+    @State private var content: String = ""
 
     var body: some View {
         NavigationView {
-            VStack {
-                TextField("Title", text: $title)
-                    .textFieldStyle(.roundedBorder)
-                    .padding()
-
-                TextEditor(text: $content)
-                    .frame(height: 200)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray.opacity(0.4))
-                    )
-                    .padding()
-
-                HStack {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-
-                    Spacer()
-
+            Form {
+                Section(header: Text("Title")) {
+                    TextField("Enter title", text: $title)
+                }
+                Section(header: Text("Content")) {
+                    TextEditor(text: $content)
+                        .frame(minHeight: 200)
+                }
+            }
+            .navigationTitle(note == nil ? "New Note" : "Edit Note")
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        onSave?(title, content)
-                        dismiss()
+                        onSave(title, content)
                     }
                 }
-                .padding()
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        // Dismiss logic if needed
+                    }
+                }
             }
             .onAppear {
                 if let note = note {

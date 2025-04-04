@@ -9,49 +9,44 @@ import Foundation
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    
-    //    •    @Published = tells SwiftUI:
-    //          “Whenever this variable changes, update the UI”
-    
-    
     @Published var notes: [Note] = Note.sampleData()
-
     
-
     func addNote(title: String, content: String) {
-        let newNote = Note(id: UUID(), title: title, content: content, dateCreated: Date())
+        let newNote = Note(title: title, content: content)
         notes.append(newNote)
     }
-
+    
     func updateNote(_ note: Note, newTitle: String, newContent: String) {
-        if let index = notes.firstIndex(where: { $0.id == note.id }) {
-            notes[index].title = newTitle
-            notes[index].content = newContent
-        }
+        // For a class, we can directly update its properties.
+        note.title = newTitle
+        note.content = newContent
     }
-
-    func changeColor(for note: Note, to color: Color) {
-        if let index = notes.firstIndex(where: { $0.id == note.id }) {
-            notes[index].color = color
-        }
+    
+    // Update the note's color; color can be nil for default
+    func changeColor(for note: Note, to color: Color?) {
+        note.color = color
     }
-
+    
+    // The summarize function now updates note.content using AI
     func summarize(note: Note) {
-        guard let index = notes.firstIndex(where: { $0.id == note.id }) else { return }
         let openAIService = OpenAIService()
         openAIService.summarize(text: note.content) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let summarizedText):
-                    self.notes[index].summary = summarizedText
+                case .success(let rewrittenText):
+                    note.content = rewrittenText
                 case .failure(let error):
                     print("Error summarizing note: \(error)")
                 }
             }
         }
     }
-
-    func sortNotesByTitle() {
-        notes.sort { $0.title.localizedCompare($1.title) == .orderedAscending }
+    
+    func sortNotesByDate() {
+        notes.sort { $0.dateCreated < $1.dateCreated }
+    }
+    
+    func deleteNotes(at offsets: IndexSet) {
+        notes.remove(atOffsets: offsets)
     }
 }

@@ -8,14 +8,28 @@
 import SwiftUI
 
 struct NoteDetailView: View {
-    var note: Note
+    // Use @ObservedObject so that updates to note are reflected immediately
+    @ObservedObject var note: Note
     var onEdit: (Note) -> Void
     var onSummarize: (Note) -> Void
-    var onColorChange: (Note, Color) -> Void
+    // Change onColorChange to accept an optional Color (nil means default)
+    var onColorChange: (Note, Color?) -> Void
+    var onUpdate: (Note, String) -> Void   // Called to revert to original content if needed
 
     @State private var showColorPicker = false
     @State private var isSummarizing = false
-    private let colorOptions: [Color] = [.red, .blue, .green, .orange, .purple, .yellow, .clear]
+    @State private var originalContent: String? = nil
+
+    // Tuple list: display color and actual value (nil means default color)
+    private let colorOptions: [(display: Color, value: Color?)] = [
+        (display: Color(.systemGray6), value: nil),  // Default color option
+        (display: .red, value: .red),
+        (display: .blue, value: .blue),
+        (display: .green, value: .green),
+        (display: .orange, value: .orange),
+        (display: .pink, value: .pink),
+        (display: .purple, value: .purple)
+    ]
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -23,9 +37,11 @@ struct NoteDetailView: View {
                 .font(.title)
                 .bold()
             
-            Text(note.content)
-                .font(.body)
-                .padding(.top, 8)
+            ScrollView {
+                Text(note.content)
+                    .font(.body)
+                    .padding(.top, 8)
+            }
             
             HStack(spacing: 20) {
                 Button(action: {
@@ -35,10 +51,12 @@ struct NoteDetailView: View {
                 }
                 
                 Button(action: {
+                    if originalContent == nil {
+                        originalContent = note.content
+                    }
                     isSummarizing = true
                     onSummarize(note)
-                    // Simulate asynchronous summarization; adjust delay as needed
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         isSummarizing = false
                     }
                 }) {
@@ -55,16 +73,32 @@ struct NoteDetailView: View {
                     Text("Color")
                 }
             }
+            .frame(maxWidth: .infinity)
             .padding(.top, 16)
+            
+            // If originalContent is stored, show a Revert button
+            if let original = originalContent {
+                Button(action: {
+                    onUpdate(note, original)
+                    originalContent = nil
+                }) {
+                    HStack {
+                        Image(systemName: "arrow.uturn.backward")
+                        Text("Revert")
+                    }
+                }
+                .padding(.top, 8)
+            }
             
             if showColorPicker {
                 HStack {
-                    ForEach(colorOptions, id: \.self) { color in
+                    ForEach(0..<colorOptions.count, id: \.self) { index in
+                        let option = colorOptions[index]
                         Circle()
-                            .fill(color)
+                            .fill(option.display)
                             .frame(width: 24, height: 24)
                             .onTapGesture {
-                                onColorChange(note, color)
+                                onColorChange(note, option.value)
                                 showColorPicker = false
                             }
                     }
@@ -78,4 +112,15 @@ struct NoteDetailView: View {
         .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
         .padding()
     }
+}
+
+#Preview {
+    // Replace with appropriate sample data for preview
+    NoteDetailView(
+        note: Note.sample,
+        onEdit: { _ in },
+        onSummarize: { _ in },
+        onColorChange: { _, _ in },
+        onUpdate: { _, _ in }
+    )
 }
